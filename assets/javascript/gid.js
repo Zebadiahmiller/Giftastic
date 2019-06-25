@@ -10,7 +10,7 @@ const videoGames = ["Borderlands","Halo","Ratchet and Clank","Knights of the Old
 
 function videoGameInfo(){
     const games =$(this).attr("data-name");
-    const queryURL = "http://api.giphy.com/v1/gifs/search?q=" + games + "&api_key=5yEKIW6ooVIKYuOOaKgjSpYJGlXOSg6V&limit=10";
+    const queryURL = "http://api.giphy.com/v1/gifs/search?q=" + games + "&api_key=5yEKIW6ooVIKYuOOaKgjSpYJGlXOSg6V&limit=10&offset=0&rating=r&lang=en";
     console.log(games);
     
     //performing the ajax request
@@ -25,13 +25,36 @@ function videoGameInfo(){
         console.log(response);
         //
         // $("#gifs-appear-here").text(JSON.stringify(response));
+        const results = response.data
 
-        //making a div to hold the class of video-games
-        const videoGameDiv = $("<div class = 'video-games'>");
+        for (let r = 0; r < results.length; r++){
 
-        // storing the rating data for the games gif
+            
+            //making a div to hold the class of video-games
+            const videoGameDiv = $("<div class = 'video-games'>");
+            
+            // storing the rating data for the games gif
+            
+            
+            // element to store the rating of the giph
+            const paragraphOne =$("<p>"). text("Rating:" + results[r].rating);
+            //displaying rating
+            
+            // showing the gif
+            const gameImage =$("<img>");
+            
+            //creating the image tag
+            gameImage.attr("src", results[r].images.fixed_height.url);
+            
+            
+            //appending the gifs
+            videoGameDiv.append(paragraphOne);
+            videoGameDiv.append(gameImage);
+            // putting the gifs before the other gifs
+            $("#gifs-appear-here").prepend(videoGameDiv);
+        }
         
-    })
+    });
     
 }
 
