@@ -3,6 +3,42 @@
 const videoGames = ["Borderlands","Halo","Ratchet and Clank","Knights of the Old republic", "Mario", "Zelda", "God of War", "Sonic", "Final Fantasy"]
 
 
+
+
+
+//giphy api calling
+
+function videoGameInfo(){
+    const games =$(this).attr("data-name");
+    const queryURL = "http://api.giphy.com/v1/gifs/search?q=" + games + "&api_key=5yEKIW6ooVIKYuOOaKgjSpYJGlXOSg6V&limit=10";
+    console.log(games);
+    
+    //performing the ajax request
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    })
+    //using .then to wait for the infor to come from the api
+    .then(function(response){
+        console.log(queryURL);
+        //logging the respons
+        console.log(response);
+        //
+        // $("#gifs-appear-here").text(JSON.stringify(response));
+
+        //making a div to hold the class of video-games
+        const videoGameDiv = $("<div class = 'video-games'>");
+
+        // storing the rating data for the games gif
+        
+    })
+    
+}
+
+
+
+
+
 //function to make the new buttons
 function makeButtons(){
 //clearing the buttons to not make repeat buttons
@@ -13,7 +49,7 @@ function makeButtons(){
         const gameButtons =$("<button>");
 
         //adding a new class
-        gameButtons.addClass("video-game");
+        gameButtons.addClass("video-game-btn");
 
         //adding a data atrribute
         gameButtons.attr("data-name", videoGames[i]);
@@ -42,7 +78,7 @@ $("#add-game").on("click", function(event){
     makeButtons();
 
 });
-
+$(document).on("click", ".video-game-btn", videoGameInfo);
 makeButtons();
 
 
