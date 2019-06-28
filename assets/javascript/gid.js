@@ -10,7 +10,7 @@ const videoGames = ["Borderlands", "Halo", "Ratchet and Clank", "Knights of the 
 
 function videoGameInfo() {
     const games = $(this).attr("data-name");
-    const queryURL = "http://api.giphy.com/v1/gifs/search?q=" + games + "&api_key=5yEKIW6ooVIKYuOOaKgjSpYJGlXOSg6V&limit=10&offset=0&rating=r&lang=en";
+    const queryURL = "https://api.giphy.com/v1/gifs/search?q=" + games + "&api_key=5yEKIW6ooVIKYuOOaKgjSpYJGlXOSg6V&limit=10&offset=0&rating=r&lang=en";
     console.log(games);
 
     //performing the ajax request
