@@ -44,7 +44,7 @@ function videoGameInfo() {
                 const gameImage = $("<img class = 'gif-image'>");
 
                 //creating the image tag
-                gameImage.attr("src", results[r].images.fixed_height.url);
+                gameImage.attr("src", results[r].images.fixed_height_still.url);
 
 
                 //appending the gifs
@@ -53,13 +53,15 @@ function videoGameInfo() {
                 // putting the gifs before the other gifs
                 $("#gifs-appear-here").prepend(videoGameDiv);
 
-                   
-    
-                
+
+
+
+
             }
-            
+
 
         });
+
 
 }
 
@@ -106,24 +108,26 @@ $("#add-game").on("click", function (event) {
     makeButtons();
 
 });
-function startStop(){
 
-    $(document).on("click", ".video-game-btn", videoGameInfo,);
-       
-    $('body').on('click', '.gif-image', function() {
-    	var src = $(this).attr("src");
-      if($(this).hasClass('playing')){
-         //stop
-         $(this).attr('src', src.replace(/\.gif/i, "_s.gif"))
-         $(this).removeClass('playing');
-      } else {
-        //play
-        $(this).addClass('playing');
-        $(this).attr('src', src.replace(/\_s.gif/i, ".gif"))
-      }
+function startStop() {
+
+    $(document).on("click", ".video-game-btn", videoGameInfo);
+    $('body').on('click', '.gif-image', function () {
+        var src = $(this).attr("src");
+        if ($(this).hasClass('playing')) {
+            //stop
+            $(this).attr('src', src.replace(/\.gif/i, "_s.gif"))
+            $(this).removeClass('playing');
+        } else {
+            //play
+            $(this).addClass('playing');
+            $(this).attr('src', src.replace(/\_s.gif/i, ".gif"))
+        }
     });
-}
+};
 startStop();
+
+
 makeButtons();
 
 
